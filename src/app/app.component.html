@@ -1,20 +1,79 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div *ngIf="!showResult">
+<header>
+  Products
+  <span class="done-button">
+  <button (click)="doneClick()">Done</button>
+  </span>
+</header>
+<div class="dropdown-container">
+  <div class="dropdown" *ngFor="let dropDownData of productsList; let i = index">
+    <div class="dropdown-contents"  id="{{'dropdown'+i}}">
+      <div (click)="dropDownClicked(i,'parent',0)">
+        {{dropDownData.name}}
+        <span *ngIf="getDropDownStatus(dropDownData.name,'parent')" [style.color] = "'green'">
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="sub-categories-container" *ngIf="currentClicked === i">
+        <div>
+          <span class="sub-text">Select SubCategories</span>
+          <div class="search-container">
+            <div class="search-bar">
+              <input type="text" (keyup)="searchData($event,'parent')" [(ngModel)]="searchInput" placeholder="Search" />
+            </div>
+            <div *ngFor="let subCategoryData of searchResult; let j = index" class="sub-products">
+                <div class="products">
+                  <div (click)="dropDownClicked(i,'child',j)">
+                    {{subCategoryData.name}}
+                    <span *ngIf="getDropDownStatus(subCategoryData.name,'child')" [style.color] = "'green'">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  <div *ngIf="currentChildClicked === j">
+                    <div class="sub-products-title">Select SubProducts</div>
+                    <div class="sub-products-container">
+                      <div class="search-bar-child">
+                        <input type="text" (keyup)="searchData($event,'child')" [(ngModel)]="searchInputSubProduct" placeholder="Search" />
+                      </div>
+                      <div class="sub-products" *ngFor="let subProductsdata of searchResultSubProduct; let k =index">
+                        <div (click)="dropDownClicked(i,'childLevel2',j,k)" class="sub-products-child">
+                          {{subProductsdata.name}}
+                          <span *ngIf="getDropDownStatus(subProductsdata.name,'childLevel2')" [style.color] = "'green'">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+</div>
+<div class="results-container" *ngIf="showResult">
+  <div class="heading">
+    Products
+  </div>
+  <div class="sub" *ngFor="let data of selectedProducts">
+    {{data}}
+  </div>
+  <div class="heading">
+    Sub Categories
+  </div>
+  <div  class="sub" *ngFor="let data of selectedCategories">
+    {{data}}
+  </div>
+  <div class="heading">
+    Sub Products
+  </div>
+  <div  class="sub" *ngFor="let data of selectedSubProducts">
+    {{data}}
+  </div>
+  <div class="button-container">
+    <button>Save</button>
+  </div>
+</div>

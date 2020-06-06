@@ -1,0 +1,109 @@
+header {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  background-color: #33afb6;
+  .done-button {
+    padding-left: 10px;
+  }
+}
+.dropdown {
+  display: flex;
+  margin: auto;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  border-bottom: 1px solid #d0d2d6;
+  padding: 5px;
+  .dropdown-contents {
+    width: 100%;
+  }
+  .sub-categories-container {
+    min-height: 100px;
+    background: #33435a;
+    width: 100%;
+    border-radius: 2px;
+    color: white;
+    padding: 10px;
+    .sub-text {
+      padding: 2px;
+    }
+    .search-container {
+      min-height: 200px;
+      padding: 10px;
+      margin-left: 5%;
+      margin-right: 5%;
+      background: #d0d2d6;
+      border-radius: 5px;
+      .search-bar {
+        width: 90%;
+        margin: auto;
+      }
+      .search-bar input {
+        border: none;
+        width: 100%;
+        padding: 5px 0;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #738289;
+        text-indent: 10px;
+      }
+      .sub-products {
+        .products {
+          padding: 10px;
+          border-bottom: 1px solid white;
+          color: black;
+          text-align: left;
+          text-indent: 4%;
+          color: black;
+          .sub-products-title {
+            color: white;
+            text-align: center;
+          }
+          .sub-products-container {
+            background: #e4e6eb;
+            padding-top: 5px;
+            width: 90%;
+            margin-left: 4%;
+            .search-bar-child {
+              width: 90%;
+            }
+            .sub-products-child {
+              padding: 5px;
+              border-bottom: 1px solid white;
+            }
+            .search-bar-child input {
+              border: none;
+              width: 100%;
+              padding: 5px 0;
+              border-radius: 5px;
+              font-size: 14px;
+              color: #738289;
+              text-indent: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.results-container {
+  padding: 5%;
+  .heading {
+    padding: 5%;
+    font-size: 24px;
+  }
+  .sub {
+    color: blue;
+    padding-left: 5%;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    button {
+      width: 100px;
+      height: 60px;
+      border-radius: 5px;
+    }
+  }
+}
